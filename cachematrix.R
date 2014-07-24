@@ -11,6 +11,7 @@
 
 
 makeCacheMatrix <- function(x = matrix()) {
+  # variable that contain cashed value of inverse matrix
   minverse <- NULL
   
   setMatrix <- function(y) {
@@ -36,7 +37,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Otherwise, it calculates the inverse matrix of the matrix and sets 
 ## the value of the inverse matrix in the cache via the setInverse function.
 
-## The function returns a matrix that is the inverse of 'x'
+## The function returns a matrix that is the inverse matrix of 'x'
 
 cacheSolve <- function(x, ...) {
   
@@ -45,8 +46,9 @@ cacheSolve <- function(x, ...) {
     message("getting cached data")
     return(m)
   }
-  matrixA <- x$get()
-  m <- solve(matrixA, ...)
+  mat <- x$get()
+  # calculate the inverse matrix
+  matI <- solve(mat, ...)
   x$setInverse(m)
-  m
+  matI
 }
